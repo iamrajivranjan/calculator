@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import useCalculator from "./useCalculator";
+import { addition, subtraction, multiplication, division } from "./utility";
 import { login } from "./api";
 import("./calculator.css");
 
@@ -12,6 +12,7 @@ const Calculator = () => {
   const [result, setResult] = useState("");
   const [user, setUser] = useState("");
   const operatorLogTrack = useRef(null);
+  const cleredResult = useRef(true);
 
   const { enqueue } = useQueue();
 
@@ -36,8 +37,6 @@ const Calculator = () => {
     registerBrowser();
     startSequencer();
   }, []);
-
-  const { addition, subtraction, multiplication, division } = useCalculator();
 
   const isNumber = (str) => !isNaN(str) || str === ".";
 
@@ -95,8 +94,14 @@ const Calculator = () => {
 
   const keyPressed = (key) => {
     if (result) {
+      if (isOperator(key)) {
+        setFirstNumber(`${result}`);
+        cleredResult.current = false;
+      } else {
+        setFirstNumber("");
+        cleredResult.current = true;
+      }
       setResult("");
-      setFirstNumber("");
       setSecondNumber("");
       operatorLogTrack.current = null;
     }
@@ -109,8 +114,10 @@ const Calculator = () => {
     }
 
     if (isOperator(key)) {
-      if (firstNumber && !secondNumber && !operator) {
-        addLogActionToQueue("numberEntered", firstNumber);
+      if (firstNumber && !secondNumber) {
+        if (!operator && cleredResult.current) {
+          addLogActionToQueue("numberEntered", firstNumber);
+        }
         setOperator(key);
       }
       return;
