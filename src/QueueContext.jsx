@@ -39,7 +39,7 @@ export const QueueProvider = ({ children }) => {
     while (queueRef.current.length > 0) {
       const item = queueRef.current[0];
       try {
-        const response = await fetch(apiBase + "audits/auditLogs", {
+        const response = await fetch(apiBase + "audits/log", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
