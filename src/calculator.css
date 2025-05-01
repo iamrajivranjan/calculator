@@ -1,0 +1,75 @@
+/* .key {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.screen {
+  height: 50px;
+  width: 100%;
+  background-color: #0081ffc4;
+  margin-bottom: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.screen .content {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 25px;
+  font-weight: 700;
+  padding: 0px 10px;
+}
+
+.wrapper {
+  background-color: #00b5ff45;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.first-row,
+.second-row,
+.third-row,
+.fourth-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.first-row div,
+.second-row div,
+.third-row div,
+.fourth-row div {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 900;
+  background-color: grey;
+}
+
+.first-row .plus {
+  background-color: yellow;
+}
+
+.second-row .minus {
+  background-color: red;
+}
+
+.third-row .multiply {
+  background-color: orange;
+}
+
+.fourth-row .divide {
+  background-color: green;
+}
